@@ -5,6 +5,7 @@ Shader "Custom/Potion"
         _MainTex ("Texture", 2D) = "white" {}
         _Background ("Background", Color) = (0, 0, 0, 1)
         _Swirl ("Swirl", Color) = (1, 1, 1, 1)
+        _WarpAmount ("WarpAmount", Float) = 0.0
     }
     SubShader
     {
@@ -42,6 +43,8 @@ Shader "Custom/Potion"
 
             float4 _Points[45];
 
+            float _WarpAmount;
+
             v2f vert (appdata v)
             {
                 v2f o;
@@ -56,21 +59,14 @@ Shader "Custom/Potion"
                 float2 noiseSample = i.uv;
                 noiseSample += fixed2(fmod(_Time.x, 1), fmod(_Time.x, 1));
 
-                if (noiseSample.x < 0) {
-                    noiseSample += fixed2(1, 0);
+                /*
+                if (noiseSample.x < 0.5) {
+                    return fixed4(1, 0, 0, 1);
                 }
-                else if (noiseSample.x >= 1) {
-                    noiseSample += fixed2(-1, 0);
-                }
-                if (noiseSample.y < 0) {
-                    noiseSample += fixed2(0, 1);
-                }
-                else if (noiseSample.y >= 1) {
-                    noiseSample += fixed2(0, -1);
-                }
+                */
 
                 float perlinValue = tex2D(_MainTex, noiseSample);
-                fixed2 uv = fixed2(i.uv.x + perlinValue * 0.4, i.uv.y);
+                fixed2 uv = fixed2(i.uv.x + perlinValue * _WarpAmount, i.uv.y);
                 float closest = 10;
                 int closestIndex = 0;
 
