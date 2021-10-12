@@ -53,7 +53,23 @@ Shader "Custom/Potion"
 
             fixed4 frag(v2f i) : SV_Target
             {
-                float perlinValue = tex2D(_MainTex, i.uv);
+                float2 noiseSample = i.uv;
+                noiseSample += fixed2(fmod(_Time.x, 1), fmod(_Time.x, 1));
+
+                if (noiseSample.x < 0) {
+                    noiseSample += fixed2(1, 0);
+                }
+                else if (noiseSample.x >= 1) {
+                    noiseSample += fixed2(-1, 0);
+                }
+                if (noiseSample.y < 0) {
+                    noiseSample += fixed2(0, 1);
+                }
+                else if (noiseSample.y >= 1) {
+                    noiseSample += fixed2(0, -1);
+                }
+
+                float perlinValue = tex2D(_MainTex, noiseSample);
                 fixed2 uv = fixed2(i.uv.x + perlinValue * 0.4, i.uv.y);
                 float closest = 10;
                 int closestIndex = 0;
