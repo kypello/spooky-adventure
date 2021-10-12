@@ -53,26 +53,27 @@ Shader "Custom/Potion"
 
             fixed4 frag(v2f i) : SV_Target
             {
+                float perlinValue = tex2D(_MainTex, i.uv);
+                fixed2 uv = fixed2(i.uv.x + perlinValue * 0.4, i.uv.y);
                 float closest = 10;
                 int closestIndex = 0;
 
                 for (int j = 0; j < 45; j++) {
-                    float dist = distance(i.uv, _Points[j]);
+                    float dist = distance(uv, _Points[j]);
                     if (dist < closest) {
                         closest = dist;
                         closestIndex = j;
                     }
                 }
 
-                int closeValue = (int)(closest * 24);
-                if (closeValue % 2 == 0 && closest < 0.8) {
-                    return _Swirl;
-                }
-                return _Background;
+                closest *= 12;
+                int closeInt = (int)closest;
 
-                UNITY_APPLY_FOG(i.fogCoord, col);
+                fixed4 color = lerp(_Background, _Swirl, abs(closest - closeInt - 0.5) * 2);
 
-                
+                //UNITY_APPLY_FOG(i.fogCoord, color);
+
+                return color;
             }
             ENDCG
         }
