@@ -83,7 +83,7 @@ Shader "Custom/Potion"
 
                 fixed4 color = lerp(_Background, _Swirl, abs(closest - closeInt - 0.5) * 2);
 
-                //UNITY_APPLY_FOG(i.fogCoord, color);
+                UNITY_APPLY_FOG(i.fogCoord, color);
 
                 return color;
             }

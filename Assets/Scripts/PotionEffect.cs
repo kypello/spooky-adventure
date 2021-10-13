@@ -6,6 +6,7 @@ using UnityEngine;
 public class PotionEffect : MonoBehaviour
 {
     public int pointCount = 5;
+    public float speed = 1f;
 
     public Material mat;
 
@@ -22,8 +23,8 @@ public class PotionEffect : MonoBehaviour
             angularVelocity = Random.Range(-1f, 1f);
         }
 
-        public void Update() {
-            angle += angularVelocity * Time.deltaTime;
+        public void Update(float s) {
+            angle += angularVelocity * Time.deltaTime * s;
             if (angle >= Mathf.PI * 2f) {
                 angle -= Mathf.PI * 2f;
             }
@@ -64,8 +65,8 @@ public class PotionEffect : MonoBehaviour
 
     void Update() {
         for (int i = 0; i < pointCount; i++) {
-            pointInfos[i].Update();
-            points[i] += pointInfos[i].GetDir() * pointInfos[i].velocity * Time.deltaTime;
+            pointInfos[i].Update(speed);
+            points[i] += pointInfos[i].GetDir() * pointInfos[i].velocity * Time.deltaTime * speed;
 
             if (points[i].x < 0f) {
                 points[i] += new Vector4(1f, 0f, 0f, 0f);
