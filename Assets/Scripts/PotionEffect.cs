@@ -46,6 +46,7 @@ public class PotionEffect : MonoBehaviour
     void OnEnable() {
         points = new Vector4[pointCount * 9];
         pointInfos = new PointInfo[pointCount];
+        mat.SetFloat("_Speed", speed);
 
         for (int i = 0; i < pointCount; i++) {
             points[i] = new Vector4(Random.Range(0f, 1f), Random.Range(0f, 1f), 0f, 0f);

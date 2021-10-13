@@ -6,6 +6,7 @@ Shader "Custom/Potion"
         _Background ("Background", Color) = (0, 0, 0, 1)
         _Swirl ("Swirl", Color) = (1, 1, 1, 1)
         _WarpAmount ("WarpAmount", Float) = 0.0
+        _Speed ("Speed", Float) = 1.0
     }
     SubShader
     {
@@ -44,6 +45,7 @@ Shader "Custom/Potion"
             float4 _Points[45];
 
             float _WarpAmount;
+            float _Speed;
 
             v2f vert (appdata v)
             {
@@ -57,7 +59,7 @@ Shader "Custom/Potion"
             fixed4 frag(v2f i) : SV_Target
             {
                 float2 noiseSample = i.uv;
-                noiseSample += fixed2(fmod(_Time.x, 1), fmod(_Time.x, 1));
+                noiseSample += fixed2(fmod(_Time.x * _Speed, 1), fmod(_Time.x * _Speed, 1));
 
                 /*
                 if (noiseSample.x < 0.5) {
