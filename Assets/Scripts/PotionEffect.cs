@@ -44,6 +44,8 @@ public class PotionEffect : MonoBehaviour
         new Vector2(-1, 1), new Vector2(0, 1), new Vector2(1, 1) };
 
     void OnEnable() {
+        Debug.Log(Mathf.Atan(12f / 4.5f) * Mathf.Rad2Deg);
+
         points = new Vector4[pointCount * 9];
         pointInfos = new PointInfo[pointCount];
         mat.SetFloat("_Speed", speed);
