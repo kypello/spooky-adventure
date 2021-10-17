@@ -10,15 +10,20 @@ public class Witch : Interactable
     public Color[] colors;
     public Color[] altColors;
 
-    public ParticleSystem[] particles;
+    public ParticleSystem bubbles;
+    public ParticleSystem smoke;
     public ParticleSystem burst;
 
     public Material potionMat;
 
+    void Start() {
+        SetPotionColors(colors[0], altColors[0]);
+    }
+
     public override IEnumerator Interact() {
         DisablePlayer();
         yield return textBubble.Display("Witch", "I am a witch hehehehehe");
-        yield return DropItemInPotion(0);
+        yield return DropItemInPotion(1);
         EnablePlayer();
     }
 
@@ -32,16 +37,26 @@ public class Witch : Interactable
         itemDrop.Play();
         yield return new WaitForSeconds(0.75f);
 
-        ParticleSystem.MinMaxGradient minMaxGradient = new ParticleSystem.MinMaxGradient(colors[item], altColors[item]);
-
-        foreach (ParticleSystem particleSystem in particles) {
-            ParticleSystem.MainModule main = particleSystem.main;
-            main.startColor = minMaxGradient;
-        }
+        SetPotionColors(colors[item], altColors[item]);
 
         burst.Play();
+    }
 
-        potionMat.SetColor("_Background", colors[item]);
-        potionMat.SetColor("_Swirl", colors[item]);
+    void SetPotionColors(Color a, Color b) {
+        ParticleSystem.MinMaxGradient minMaxGradient = new ParticleSystem.MinMaxGradient(a, b);
+
+        ParticleSystem.MainModule main = bubbles.main;
+        main.startColor = minMaxGradient;
+
+        minMaxGradient = new ParticleSystem.MinMaxGradient(new Color(a.r, a.g, a.b, 0.4f), new Color(b.r, b.g, b.b, 0.4f));
+
+        main = smoke.main;
+        main.startColor = minMaxGradient;
+
+        main = burst.main;
+        main.startColor = minMaxGradient;
+
+        potionMat.SetColor("_Background", a);
+        potionMat.SetColor("_Swirl", b);
     }
 }
