@@ -11,6 +11,8 @@ public class PlayerLook : MonoBehaviour
     public bool control = true;
     Vector3 lockOnPoint;
 
+    bool lookingAtPoint = false;
+
     void Update()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -22,5 +24,38 @@ public class PlayerLook : MonoBehaviour
 
             controller.transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime);
         }
+    }
+
+    public IEnumerator LookAt(Vector3 point) {
+        while (lookingAtPoint) {
+            yield return null;
+        }
+
+        lookingAtPoint = true;
+        bool prevControlValue = control;
+        control = false;
+
+        Vector3 targetDir = (point - transform.position).normalized;
+
+        float dotProduct;
+
+        do {
+            dotProduct = Vector3.Dot(transform.forward, targetDir);
+
+            Vector3 delta = Vector3.RotateTowards(transform.forward, targetDir, (dotProduct * -dotProduct + 1f) * 2f * Mathf.PI * Time.deltaTime, 0f);
+
+            transform.localRotation = Quaternion.LookRotation(delta);
+            transform.localRotation = Quaternion.Euler(Vector3.right * transform.localEulerAngles.x);
+
+            controller.transform.localRotation = Quaternion.LookRotation(delta);
+            controller.transform.localRotation = Quaternion.Euler(Vector3.up * controller.transform.localEulerAngles.y);
+
+            yield return null;
+        } while (dotProduct < 0.99f);
+
+        xRotation = transform.localEulerAngles.x;
+
+        control = prevControlValue;
+        lookingAtPoint = false;
     }
 }

@@ -14,6 +14,9 @@ public class Witch : Interactable
     public ParticleSystem smoke;
     public ParticleSystem burst;
 
+    public Light light;
+    public Animation lightAnim;
+
     public Material potionMat;
 
     void Start() {
@@ -22,7 +25,12 @@ public class Witch : Interactable
 
     public override IEnumerator Interact() {
         DisablePlayer();
+        StartCoroutine(playerLook.LookAt(transform.position + Vector3.up * 2.5f));
+
         yield return textBubble.Display("Witch", "I am a witch hehehehehe");
+
+        StartCoroutine(playerLook.LookAt(bubbles.transform.position));
+
         yield return DropItemInPotion(1);
         EnablePlayer();
     }
@@ -35,11 +43,20 @@ public class Witch : Interactable
         itemModels[item].SetActive(true);
 
         itemDrop.Play();
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.7f);
 
         SetPotionColors(colors[item], altColors[item]);
 
         burst.Play();
+        lightAnim.Play();
+
+        float ripple = 0f;
+        while (ripple < 1.5f) {
+            yield return null;
+            ripple += Time.deltaTime;
+            potionMat.SetFloat("_RippleDist", ripple);
+        }
+        potionMat.SetFloat("_RippleDist", -2f);
     }
 
     void SetPotionColors(Color a, Color b) {
@@ -48,15 +65,17 @@ public class Witch : Interactable
         ParticleSystem.MainModule main = bubbles.main;
         main.startColor = minMaxGradient;
 
+        main = burst.main;
+        main.startColor = minMaxGradient;
+
         minMaxGradient = new ParticleSystem.MinMaxGradient(new Color(a.r, a.g, a.b, 0.4f), new Color(b.r, b.g, b.b, 0.4f));
 
         main = smoke.main;
         main.startColor = minMaxGradient;
 
-        main = burst.main;
-        main.startColor = minMaxGradient;
-
         potionMat.SetColor("_Background", a);
         potionMat.SetColor("_Swirl", b);
+
+        light.color = a;
     }
 }

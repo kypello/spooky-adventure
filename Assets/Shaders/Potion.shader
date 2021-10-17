@@ -7,6 +7,7 @@ Shader "Custom/Potion"
         _Swirl ("Swirl", Color) = (1, 1, 1, 1)
         _WarpAmount ("WarpAmount", Float) = 0.0
         _Speed ("Speed", Float) = 1.0
+        _RippleDist ("RippleDist", Float) = 0.0
     }
     SubShader
     {
@@ -46,6 +47,7 @@ Shader "Custom/Potion"
 
             float _WarpAmount;
             float _Speed;
+            float _RippleDist;
 
             v2f vert (appdata v)
             {
@@ -69,6 +71,17 @@ Shader "Custom/Potion"
 
                 float perlinValue = tex2D(_MainTex, noiseSample);
                 fixed2 uv = fixed2(i.uv.x + perlinValue * _WarpAmount, i.uv.y);
+
+                float distToCenter = distance(i.uv, fixed2(0.5, 0.5));
+
+                float distFromRipple = abs(_RippleDist - distToCenter);
+
+                if (distFromRipple < 0.1) {
+                    fixed2 dirToCenter = (fixed2(0.5, 0.5) - i.uv) / distToCenter;
+
+                    uv += dirToCenter * (0.1 - distFromRipple) * 4;
+                }
+
                 float closest = 10;
                 int closestIndex = 0;
 
