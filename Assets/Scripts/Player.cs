@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
 
     bool wasGroundedLastFrame;
 
+    public bool control = true;
+
     CharacterController controller;
 
     void Awake() {
@@ -27,10 +29,10 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) {
+        if (control && Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) {
             vx = Mathf.Max(vx - Time.deltaTime * moveForce, -1f);
         }
-        else if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A)) {
+        else if (control && Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A)) {
             vx = Mathf.Min(vx + Time.deltaTime * moveForce, 1f);
         }
         else {
@@ -42,10 +44,10 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W)) {
+        if (control && Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W)) {
             vz = Mathf.Max(vz - Time.deltaTime * moveForce, -1f);
         }
-        else if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)) {
+        else if (control && Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)) {
             vz = Mathf.Min(vz + Time.deltaTime * moveForce, 1f);
         }
         else {
@@ -57,7 +59,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (controller.isGrounded && Input.GetKeyDown(KeyCode.Space)) {
+        if (control && controller.isGrounded && Input.GetKeyDown(KeyCode.Space)) {
             //jump.Play();
             vy = jumpStrength;
         }

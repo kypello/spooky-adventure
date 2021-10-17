@@ -8,13 +8,19 @@ public class PlayerLook : MonoBehaviour
     public float sensitivity;
     float xRotation = 0f;
 
+    public bool control = true;
+    Vector3 lockOnPoint;
+
     void Update()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        xRotation -= Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
-        controller.transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime);
+        if (control) {
+            xRotation -= Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+            transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+
+            controller.transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime);
+        }
     }
 }
