@@ -32,14 +32,16 @@ public class PlayerLook : MonoBehaviour
         }
 
         lookingAtPoint = true;
-        bool prevControlValue = control;
-        control = false;
 
         Vector3 targetDir = (point - transform.position).normalized;
 
         float dotProduct;
 
         do {
+            if (control) {
+                break;
+            }
+
             dotProduct = Vector3.Dot(transform.forward, targetDir);
 
             Vector3 delta = Vector3.RotateTowards(transform.forward, targetDir, (dotProduct * -dotProduct + 1f) * 2f * Mathf.PI * Time.deltaTime, 0f);
@@ -50,12 +52,11 @@ public class PlayerLook : MonoBehaviour
             controller.transform.localRotation = Quaternion.LookRotation(delta);
             controller.transform.localRotation = Quaternion.Euler(Vector3.up * controller.transform.localEulerAngles.y);
 
+            xRotation = Mathf.Repeat(transform.localEulerAngles.x + 90f, 180f) - 90f;
+
             yield return null;
         } while (dotProduct < 0.99f);
 
-        xRotation = transform.localEulerAngles.x;
-
-        control = prevControlValue;
         lookingAtPoint = false;
     }
 }
