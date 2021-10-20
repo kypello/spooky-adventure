@@ -28,8 +28,13 @@ public class ScarecrowHead : Interactable
 
         anim.Play();
         yield return textBubble.Display("Pumpkin", "Finally! Someone noticed me down here!!");
+
+        anim.Play();
+        yield return textBubble.Display("Pumpkin", "I'm not just a pumpkin, by the way. I'm supposed to be the head of a scarecrow. I just... got a little bit lost.");
+
         anim.Play();
         yield return textBubble.Display("Pumpkin", "Hey, do me a real solid, would ya? There's a wooden post-looking thing in the pumpkin patch, see...");
+
         anim.Play();
         yield return textBubble.Display("Pumpkin", "...would you mind carrying me over there and placing me on top? Please and thank you and all that!");
 
