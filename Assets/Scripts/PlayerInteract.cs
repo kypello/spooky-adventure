@@ -19,7 +19,6 @@ public class PlayerInteract : MonoBehaviour
             crosshair.sizeDelta = Vector2.one * 12;
 
             if (Input.GetMouseButtonDown(0)) {
-                Debug.Log("Interact");
                 StartCoroutine(hit.collider.GetComponent<Interactable>().Interact());
             }
         }

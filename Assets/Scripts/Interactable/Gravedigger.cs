@@ -8,6 +8,8 @@ public class Gravedigger : Interactable
 
     public float speed = 1f;
 
+    float defaultSpeed = 1f;
+
     bool hopping = true;
     public Animation anim;
 
@@ -48,12 +50,28 @@ public class Gravedigger : Interactable
             yield return null;
         }
 
-        hopping = false;
+        if (!jackhammer) {
+            hopping = false;
+        }
 
         if (log.Contains("giveJackhammer")) {
             yield return textBubble.Display("Gravedigger", "Can't stop to chat right now!!");
-            yield return textBubble.Display("Gravedigger", "I'm on a roll!!");
-            yield return textBubble.Display("Gravedigger", "Look at me go!");
+
+            if (Random.Range(0, 2) < 1) {
+                yield return textBubble.Display("Gravedigger", "I'm on a roll!!");
+            }
+            else {
+                yield return textBubble.Display("Gravedigger", "This is incredible!");
+            }
+
+            if (Random.Range(0, 2) < 1) {
+                yield return textBubble.Display("Gravedigger", "Look at me go!");
+            }
+            else {
+                yield return textBubble.Display("Gravedigger", "I haven't felt this young since I was 80!");
+            }
+
+                
         }
         else if (Inventory.Contains("Jackhammer")) {
             yield return textBubble.Display("Gravedigger", "WOAH");
@@ -68,6 +86,7 @@ public class Gravedigger : Interactable
             Inventory.AddItem("Shovel");
             log.Add("giveJackhammer");
             jackhammer = true;
+            defaultSpeed = 2f;
         }
         else if (log.Contains("talkedToGravedigger")) {
             yield return textBubble.Display("Gravedigger", "Hey, did you find me something better to dig with?");
@@ -97,7 +116,7 @@ public class Gravedigger : Interactable
             yield return null;
         }
 
-        speed = 1f;
+        speed = defaultSpeed;
         EnablePlayer();
     }
 

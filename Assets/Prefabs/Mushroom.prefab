@@ -13,7 +13,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 3, z: 2}
   m_Center: {x: 0, y: 1.5, z: 0}
---- !u!114 &2484556636940485650
+--- !u!114 &950124192751270420
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -22,9 +22,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6874693103635053329}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 093bacac4ecf04a48abb02b5f0fcf72d, type: 3}
+  m_Script: {fileID: 11500000, guid: 76c945fc49a8f374199768f604dc1cf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemName: Mushroom
 --- !u!1001 &6027708723503531584
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50,15 +51,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9be05c49b881c9244b4d6ef6bc48b2e2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -73.009735
+      value: -5.867737
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9be05c49b881c9244b4d6ef6bc48b2e2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.4900007
+      value: 5.0100007
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9be05c49b881c9244b4d6ef6bc48b2e2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -16.418533
+      value: -2.743534
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9be05c49b881c9244b4d6ef6bc48b2e2, type: 3}
       propertyPath: m_LocalRotation.w
