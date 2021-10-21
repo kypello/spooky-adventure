@@ -9,10 +9,21 @@ public class TextBubble : MonoBehaviour
     public TMP_Text tmp;
     public TMP_Text tmpName;
 
+    public bool typing;
+
+    string currentName;
+    
+    public string CurrentName {
+        get {
+            return currentName;
+        }
+    }
+
     public IEnumerator Display(string name, string text) {
         bubble.SetActive(true);
 
         tmpName.text = name;
+        currentName = name;
 
         tmp.text = text;
         Canvas.ForceUpdateCanvases();
@@ -20,6 +31,8 @@ public class TextBubble : MonoBehaviour
         tmp.text = "";
 
         int characters = text.Length;
+
+        typing = true;
 
         for (int i = 0; i <= characters; i++) {
             tmp.text = text.Substring(0, i);
@@ -34,6 +47,8 @@ public class TextBubble : MonoBehaviour
                 i = characters - 1;
             }
         }
+
+        typing = false;
 
         do {
             yield return null;

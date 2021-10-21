@@ -9,6 +9,8 @@ public abstract class Interactable : MonoBehaviour
     public static PlayerLook playerLook;
     public static PlayerInteract playerInteract;
 
+    protected static List<string> log = new List<string>();
+
     public void Awake() {
         textBubble = FindObjectOfType<TextBubble>();
         player = FindObjectOfType<Player>();

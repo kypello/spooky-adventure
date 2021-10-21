@@ -44,7 +44,7 @@ public class Scarecrow : Interactable
             yield return playerLook.LookAt(transform.position + Vector3.up * 3f);
             yield return textBubble.Display("Scarecrow", "Hey");
 
-            StartCoroutine(playerLook.LookAt(crowA.transform.position));
+            yield return playerLook.LookAt(crowA.transform.position);
             yield return textBubble.Display("Crow #1", "IT TALKS!!!!!!");
             yield return textBubble.Display("Crow #1", "AAAAHHHHHHH");
             yield return textBubble.Display("Crow #1", "THIs is SO SO SPOOky brO I CAN'T");
@@ -66,7 +66,7 @@ public class Scarecrow : Interactable
             crowKeyProp.SetActive(false);
             key.SetActive(true);
 
-            while (crowA.transform.position.y < 20f) {
+            while (crowA.transform.position.y < 10f) {
                 crowA.transform.Translate(Vector3.up * Time.deltaTime * 5f);
                 yield return null;
             }
