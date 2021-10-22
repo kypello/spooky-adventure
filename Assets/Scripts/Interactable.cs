@@ -8,6 +8,7 @@ public abstract class Interactable : MonoBehaviour
     public static Player player;
     public static PlayerLook playerLook;
     public static PlayerInteract playerInteract;
+    public static Inventory inventory;
 
     protected static List<string> log = new List<string>();
 
@@ -16,6 +17,7 @@ public abstract class Interactable : MonoBehaviour
         player = FindObjectOfType<Player>();
         playerLook = FindObjectOfType<PlayerLook>();
         playerInteract = FindObjectOfType<PlayerInteract>();
+        inventory = FindObjectOfType<Inventory>();
     }
 
     public void DisablePlayer() {

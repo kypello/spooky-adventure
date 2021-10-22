@@ -7,7 +7,7 @@ public class SimplePickup : Interactable
     public string itemName;
 
     public override IEnumerator Interact() {
-        Inventory.AddItem(itemName);
+        inventory.AddItem(itemName);
         gameObject.SetActive(false);
         yield break;
     }

@@ -7,9 +7,10 @@ public class GraveyardLock : Interactable
     public Animation anim;
 
     public override IEnumerator Interact() {
-        if (Inventory.Contains("GraveyardKey")) {
+        if (inventory.Contains("GraveyardKey")) {
             anim.Play();
             GetComponent<Collider>().enabled = false;
+            inventory.RemoveItem("GraveyardKey");
         }
         else {
             DisablePlayer();

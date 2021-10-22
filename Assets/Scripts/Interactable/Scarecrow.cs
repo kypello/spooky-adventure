@@ -20,8 +20,8 @@ public class Scarecrow : Interactable
         if (pumpkinPlaced) {
             yield return textBubble.Display("Scarecrow", "Please find me something to wear!!");
         }
-        else if (Inventory.Contains("PumpkinHead")) {
-            Inventory.RemoveItem("PumpkinHead");
+        else if (inventory.Contains("PumpkinHead")) {
+            inventory.RemoveItem("PumpkinHead");
             pumpkin.SetActive(true);
             pumpkinPlaced = true;
 

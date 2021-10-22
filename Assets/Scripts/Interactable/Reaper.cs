@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mushroom : Interactable
+public class Reaper : Interactable
 {
+    Animation anim;
+
+    void Start() {
+        anim = GetComponent<Animation>();
+    }
+
     public override IEnumerator Interact() {
-        inventory.AddItem("Mushroom");
-        gameObject.SetActive(false);
         yield break;
     }
 }

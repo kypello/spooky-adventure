@@ -17,7 +17,7 @@ public class Warewolf : Interactable
 
         StartCoroutine(playerLook.LookAt(transform.position + Vector3.up * 3f));
         
-        if (Inventory.Contains("Shovel")) {
+        if (inventory.Contains("Shovel")) {
             yield return textBubble.Display("Where Wolf", "Is that a shovel you're carrying?");
             yield return textBubble.Display("Where Wolf", "Looks like the perfect tool for digging up the bone that I hid!");
             yield return textBubble.Display("Where Wolf", "But you could never possibly do that of course...");

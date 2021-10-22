@@ -12,7 +12,7 @@ public class BoneZone : Interactable
         DisablePlayer();
         StartCoroutine(playerLook.LookAt(transform.position));
 
-        if (Inventory.Contains("Shovel")) {
+        if (inventory.Contains("Shovel")) {
             particles.Play();
             GetComponent<Renderer>().enabled = true;
             bone.SetActive(true);
@@ -25,9 +25,9 @@ public class BoneZone : Interactable
             bone.SetActive(false);
             GetComponent<Collider>().enabled = false;
 
-            Inventory.AddItem("Bone");
+            inventory.AddItem("Bone");
         }
-        else if (Inventory.Contains("Jackhammer")) {
+        else if (inventory.Contains("Jackhammer")) {
             yield return textBubble.Display("", "We COULD dig up the ground here with a jackhammer...");
             yield return textBubble.Display("", "...but it might damage whatever priceless treasure is buried here!");
             yield return textBubble.Display("", "And besides, we don't have a jackhammer license!");

@@ -73,7 +73,7 @@ public class Gravedigger : Interactable
 
                 
         }
-        else if (Inventory.Contains("Jackhammer")) {
+        else if (inventory.Contains("Jackhammer")) {
             yield return textBubble.Display("Gravedigger", "WOAH");
             yield return textBubble.Display("Gravedigger", "What is this???");
             yield return textBubble.Display("Gravedigger", "It's like a shovel on steroids or something??");
@@ -82,8 +82,7 @@ public class Gravedigger : Interactable
             shovelProp.SetActive(false);
             jackhammerProp.SetActive(true);
 
-            Inventory.RemoveItem("Jackhammer");
-            Inventory.AddItem("Shovel");
+            inventory.ReplaceItem("Jackhammer", "Shovel");
             log.Add("giveJackhammer");
             jackhammer = true;
             defaultSpeed = 2f;

@@ -38,7 +38,7 @@ public class ScarecrowHead : Interactable
         anim.Play();
         yield return textBubble.Display("Pumpkin", "...would you mind carrying me over there and placing me on top? Please and thank you and all that!");
 
-        Inventory.AddItem("PumpkinHead");
+        inventory.AddItem("PumpkinHead");
         EnablePlayer();
         gameObject.SetActive(false);
     }

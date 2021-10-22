@@ -27,14 +27,14 @@ public class Witch : Interactable
         DisablePlayer();
         
         //mushroom
-        if (!log.Contains("mushroomInPotion") && (!Inventory.Contains("Mushroom") || !log.Contains("heardMushroomRiddle"))) {
+        if (!log.Contains("mushroomInPotion") && (!inventory.Contains("Mushroom") || !log.Contains("heardMushroomRiddle"))) {
             StartCoroutine(playerLook.LookAt(transform.position + Vector3.up * 2.5f));
             yield return textBubble.Display("Witch", "A white-speck'd cap, a slender stalk...");
             yield return textBubble.Display("Witch", "...bring me a red mushroom, then we'll talk.");
             log.Add("heardMushroomRiddle");
         }
 
-        if (Inventory.Contains("Mushroom")) {
+        if (inventory.Contains("Mushroom")) {
             StartCoroutine(playerLook.LookAt(transform.position + Vector3.up * 2.5f));
             yield return textBubble.Display("Witch", "You've got it! You've got it! It's just what I need!");
             yield return textBubble.Display("Witch", "This fungus will add a strong flavour indeed!");
@@ -42,17 +42,18 @@ public class Witch : Interactable
             StartCoroutine(playerLook.LookAt(bubbles.transform.position));
             yield return DropItemInPotion(1);
             log.Add("mushroomInPotion");
+            inventory.RemoveItem("Mushroom");
         }
 
         //bone
-        if (!log.Contains("boneInPotion") && (!Inventory.Contains("Bone") || !log.Contains("heardBoneRiddle"))) {
+        if (log.Contains("mushroomInPotion") && !log.Contains("boneInPotion") && (!inventory.Contains("Bone") || !log.Contains("heardBoneRiddle"))) {
             StartCoroutine(playerLook.LookAt(transform.position + Vector3.up * 2.5f));
             yield return textBubble.Display("Witch", "A human bone, fresh from the grave...");
             yield return textBubble.Display("Witch", "...will surely make this potion behave.");
             log.Add("heardBoneRiddle");
         }
 
-        if (Inventory.Contains("Bone")) {
+        if (log.Contains("mushroomInPotion") && inventory.Contains("Bone")) {
             StartCoroutine(playerLook.LookAt(transform.position + Vector3.up * 2.5f));
             yield return textBubble.Display("Witch", "A bone! A bone! Toss it in, quick!");
             yield return textBubble.Display("Witch", "The marrow must boil, or it will make you quite sick!");
@@ -60,17 +61,18 @@ public class Witch : Interactable
             StartCoroutine(playerLook.LookAt(bubbles.transform.position));
             yield return DropItemInPotion(2);
             log.Add("boneInPotion");
+            inventory.RemoveItem("Bone");
         }
 
         //frog
-        if (!log.Contains("frogInPotion") && (!Inventory.Contains("Frog") || !log.Contains("heardFrogRiddle"))) {
+        if (log.Contains("boneInPotion") && !log.Contains("frogInPotion") && (!inventory.Contains("Frog") || !log.Contains("heardFrogRiddle"))) {
             StartCoroutine(playerLook.LookAt(transform.position + Vector3.up * 2.5f));
             yield return textBubble.Display("Witch", "We're almost there, so I'll give you a clue:");
             yield return textBubble.Display("Witch", "I'll need a creature that croaks to finish this brew!");
             log.Add("heardFrogRiddle");
         }
 
-        if (Inventory.Contains("Frog")) {
+        if (log.Contains("boneInPotion") && inventory.Contains("Frog")) {
             StartCoroutine(playerLook.LookAt(transform.position + Vector3.up * 2.5f));
             yield return textBubble.Display("Witch", "A frog! There it is! In the cauldron it goes...");
             yield return textBubble.Display("Witch", "...along with some herbs and some spices and buffalo toes...");
@@ -78,6 +80,7 @@ public class Witch : Interactable
             StartCoroutine(playerLook.LookAt(bubbles.transform.position));
             yield return DropItemInPotion(3);
             log.Add("frogInPotion");
+            inventory.RemoveItem("Frog");
 
             StartCoroutine(playerLook.LookAt(transform.position + Vector3.up * 2.5f));
             yield return textBubble.Display("Witch", "...and that's it! We're done! Our concoction's complete!");
