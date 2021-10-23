@@ -82,7 +82,8 @@ public class Gravedigger : Interactable
             shovelProp.SetActive(false);
             jackhammerProp.SetActive(true);
 
-            inventory.ReplaceItem("Jackhammer", "Shovel");
+            inventory.RemoveItem("Jackhammer");
+            inventory.AddItem("Shovel");
             log.Add("giveJackhammer");
             jackhammer = true;
             defaultSpeed = 2f;
