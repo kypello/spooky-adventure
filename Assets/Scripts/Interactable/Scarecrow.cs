@@ -23,7 +23,7 @@ public class Scarecrow : Interactable
             yield return textBubble.Display("Scarecrow", "Does it make me look scary?");
             yield return textBubble.Display("Scarecrow", "On a scale of 1 to SPOOK, how scary do I look right now?");
         }
-        if (inventory.Contains("ScarecrowHat")) {
+        else if (log.Contains("pumpkinPlaced") && inventory.Contains("ScarecrowHat")) {
             inventory.RemoveItem("ScarecrowHat");
             hat.SetActive(true);
             log.Add("hatPlaced");
