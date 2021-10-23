@@ -10,6 +10,7 @@ public class Inventory : MonoBehaviour {
 
     void Awake() {
         textBox = GetComponent<TMP_Text>();
+        UpdateInv();
     }
 
     public void AddItem(string item) {

@@ -5,25 +5,65 @@ using UnityEngine;
 public class Scarecrow : Interactable
 {
     public GameObject pumpkin;
-
-    bool pumpkinPlaced = false;
+    public GameObject hat;
 
     public GameObject crowA;
     public GameObject crowB;
     public GameObject crowKeyProp;
     public GameObject key;
+    public GameObject crowCoinsProp;
+    public GameObject coins;
 
     public override IEnumerator Interact() {
         DisablePlayer();
         StartCoroutine(playerLook.LookAt(transform.position + Vector3.up * 3f));
 
-        if (pumpkinPlaced) {
-            yield return textBubble.Display("Scarecrow", "Please find me something to wear!!");
+        if (log.Contains("hatPlaced")) {
+            yield return textBubble.Display("Scarecrow", "Thanks again for the hat!");
+            yield return textBubble.Display("Scarecrow", "Does it make me look scary?");
+            yield return textBubble.Display("Scarecrow", "On a scale of 1 to SPOOK, how scary do I look right now?");
+        }
+        if (inventory.Contains("ScarecrowHat")) {
+            inventory.RemoveItem("ScarecrowHat");
+            hat.SetActive(true);
+            log.Add("hatPlaced");
+
+            yield return textBubble.Display("Scarecrow", "I love it!");
+            yield return textBubble.Display("Scarecrow", "Thanks for bringing me this hat!");
+
+            yield return playerLook.LookAt(crowB.transform.position);
+
+            yield return textBubble.Display("Crow #2", "...woah...");
+            yield return textBubble.Display("Crow #2", ".....");
+            yield return textBubble.Display("Crow #2", "See, when it was a pumpkin on a stick, I could deal with that...");
+            yield return textBubble.Display("Crow #2", "...but with a hat thrown into the mix...");
+
+            crowB.GetComponent<Animation>().Play("CrowScared");
+
+            yield return textBubble.Display("Crow #2", "...A LINE HAS DEFINITELY BEEN CROSSED!!");
+            yield return textBubble.Display("Crow #2", "And I am NOT comfortable with this!!");
+            yield return textBubble.Display("Crow #2", "OH MY GOD THAT IS SO SCARYYYYYYYYYYYYY :O");
+            yield return textBubble.Display("Crow #2", "I'M DONE");
+
+            crowCoinsProp.SetActive(false);
+            coins.SetActive(true);
+
+            while (crowB.transform.position.y < 10f) {
+                crowB.transform.Translate(Vector3.up * Time.deltaTime * 5f);
+                yield return null;
+            }
+            crowB.SetActive(false);
+
+            yield return playerLook.LookAt(coins.transform.position);
+        }
+        else if (log.Contains("pumpkinPlaced")) {
+            yield return textBubble.Display("Scarecrow", "My look isn't complete until I have a hat!");
+            yield return textBubble.Display("Scarecrow", "If you find one, please bring it over to here!");
         }
         else if (inventory.Contains("PumpkinHead")) {
             inventory.RemoveItem("PumpkinHead");
             pumpkin.SetActive(true);
-            pumpkinPlaced = true;
+            log.Add("pumpkinPlaced");
 
             yield return textBubble.Display("Scarecrow", "Ahhhhh, that's so much better, thanks!!");
             yield return textBubble.Display("Scarecrow", "I am a spooky scary scarecrow once again!");
@@ -70,13 +110,17 @@ public class Scarecrow : Interactable
                 crowA.transform.Translate(Vector3.up * Time.deltaTime * 5f);
                 yield return null;
             }
+            crowA.SetActive(false);
 
             StartCoroutine(playerLook.LookAt(crowB.transform.position));
             yield return textBubble.Display("Crow #2", "Damn");
             yield return textBubble.Display("Crow #2", "What a coward");
             yield return textBubble.Display("Crow #2", "... a CROWard, am I right? Hahahahahahahhahahhaaahhah");
 
-            yield return playerLook.LookAt(key.transform.position);
+            yield return playerLook.LookAt(transform.position + Vector3.up * 3f);
+
+            yield return textBubble.Display("Scarecrow", "I don't want to be too demanding now, but can I please ask for one more thing?");
+            yield return textBubble.Display("Scarecrow", "Could you please find me a hat to wear?");
         }
         else {
             yield return textBubble.Display("", "Some kind of wooden post is firmly planted in the ground.");
