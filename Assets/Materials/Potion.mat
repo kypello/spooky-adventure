@@ -79,9 +79,9 @@ Material:
     - _WarpAmount: 0.5
     - _ZWrite: 1
     m_Colors:
-    - _Background: {r: 0.8962264, g: 0.79059035, b: 0.30015132, a: 1}
+    - _Background: {r: 0.1728818, g: 0.990566, b: 0.29204178, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Swirl: {r: 0.5749805, g: 0.5943396, b: 0.2270826, a: 1}
+    - _Swirl: {r: 0.04538981, g: 0.6415094, b: 0.13136864, a: 1}
     - _Time: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
