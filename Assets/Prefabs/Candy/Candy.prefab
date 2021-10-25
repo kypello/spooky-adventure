@@ -78,6 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   candyPrefabs:
   - {fileID: 3834423152050968037, guid: bf6a77729dcba8549bb165fbe35c9d61, type: 3}
+  - {fileID: 7935619086034649081, guid: 8ca8a17e598753b4fa16e14c7f0dd61a, type: 3}
 --- !u!198 &8999826492302029286
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -161,8 +162,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1
-      minScalar: 0.5
+      scalar: 0.8
+      minScalar: 0.4
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -214,8 +215,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2
-      minScalar: 1
+      scalar: 0.2
+      minScalar: 0.1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -330,8 +331,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.2
-      minScalar: 0.1
+      scalar: 0.1
+      minScalar: 0.05
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -793,7 +794,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.1
+      value: 0.6
       mode: 0
       spread: 0
       speed:
@@ -912,7 +913,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 4
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1018,7 +1019,7 @@ ParticleSystem:
     m_BurstCount: 0
     m_Bursts: []
   SizeModule:
-    enabled: 1
+    enabled: 0
     curve:
       serializedVersion: 2
       minMaxState: 1
@@ -1189,10 +1190,10 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 0
   RotationModule:
-    enabled: 0
+    enabled: 1
     x:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -1245,7 +1246,7 @@ ParticleSystem:
         m_RotationOrder: 4
     y:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -1298,9 +1299,9 @@ ParticleSystem:
         m_RotationOrder: 4
     curve:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0.7853982
-      minScalar: 0.7853982
+      minMaxState: 3
+      scalar: 0.7853981
+      minScalar: -0.7853981
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1351,7 +1352,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 0
   ColorModule:
-    enabled: 0
+    enabled: 1
     gradient:
       serializedVersion: 2
       minMaxState: 1
@@ -1536,7 +1537,7 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 21300000, guid: 085f429bcb46732409670c6843352eb1, type: 3}
+    - sprite: {fileID: 21300000, guid: 19a86c3e35a8e42ff8e4087041bbd6a3, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
