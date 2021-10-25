@@ -23,16 +23,23 @@ public class Player : MonoBehaviour
 
     CharacterController controller;
 
+    Animation headBobAnim;
+
     void Awake() {
         controller = GetComponent<CharacterController>();
+        headBobAnim = GetComponentInChildren<Animation>();
     }
 
     void Update()
     {
+        bool input = false;
+
         if (control && Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) {
+            input = true;
             vx = Mathf.Max(vx - Time.deltaTime * moveForce, -1f);
         }
         else if (control && Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A)) {
+            input = true;
             vx = Mathf.Min(vx + Time.deltaTime * moveForce, 1f);
         }
         else {
@@ -45,9 +52,11 @@ public class Player : MonoBehaviour
         }
 
         if (control && Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W)) {
+            input = true;
             vz = Mathf.Max(vz - Time.deltaTime * moveForce, -1f);
         }
         else if (control && Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)) {
+            input = true;
             vz = Mathf.Min(vz + Time.deltaTime * moveForce, 1f);
         }
         else {
@@ -88,5 +97,9 @@ public class Player : MonoBehaviour
         move += Vector3.up * vy;
 
         controller.Move(move * speed * Time.deltaTime);
+
+        if (input && !headBobAnim.isPlaying) {
+            headBobAnim.Play();
+        }
     }
 }
