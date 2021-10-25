@@ -11,6 +11,10 @@ public class Player : MonoBehaviour
 
     public AudioSource jump;
     public AudioSource land;
+    public AudioSource landHard;
+    public AudioSource[] footstepSounds;
+    public AudioSource[] footstepSoundsHard;
+    float footstepTimer = 0f;
 
     float vx;
     float vy;
@@ -18,6 +22,7 @@ public class Player : MonoBehaviour
     public float moveForce = 10f;
 
     bool wasGroundedLastFrame;
+    bool onHardSurface = false;
 
     public bool control = true;
 
@@ -69,14 +74,19 @@ public class Player : MonoBehaviour
         }
 
         if (control && controller.isGrounded && Input.GetKeyDown(KeyCode.Space)) {
-            //jump.Play();
+            jump.Play();
             vy = jumpStrength;
         }
         else if (!controller.isGrounded && wasGroundedLastFrame && vy <= 0f) {
             vy = 0f;
         }
         else if (controller.isGrounded && !wasGroundedLastFrame) {
-            //land.Play();
+            if (onHardSurface) {
+                landHard.Play();
+            }
+            else {
+                land.Play();
+            }
         }
         wasGroundedLastFrame = controller.isGrounded;
 
@@ -98,8 +108,30 @@ public class Player : MonoBehaviour
 
         controller.Move(move * speed * Time.deltaTime);
 
+        if (input && controller.isGrounded) {
+            footstepTimer -= Time.deltaTime;
+            if (footstepTimer <= 0f) {
+                footstepTimer = 0.35f;
+                if (onHardSurface) {
+                    footstepSoundsHard[Random.Range(0, footstepSoundsHard.Length)].Play();
+                }
+                else {
+                    footstepSounds[Random.Range(0, footstepSounds.Length)].Play();
+                }
+            }
+        }
+        else {
+            footstepTimer = 0.35f;
+        }
+
         if (input && !headBobAnim.isPlaying) {
             headBobAnim.Play();
+        }
+    }
+
+    void OnControllerColliderHit(ControllerColliderHit hit) {
+        if (hit.moveDirection.y < -0.4f) {
+            onHardSurface = hit.collider.gameObject.layer != 11;
         }
     }
 }
