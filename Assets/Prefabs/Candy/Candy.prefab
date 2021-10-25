@@ -79,6 +79,9 @@ MonoBehaviour:
   candyPrefabs:
   - {fileID: 3834423152050968037, guid: bf6a77729dcba8549bb165fbe35c9d61, type: 3}
   - {fileID: 7935619086034649081, guid: 8ca8a17e598753b4fa16e14c7f0dd61a, type: 3}
+  - {fileID: 7935619086034649081, guid: 8603aadb7d3ee448da441a1e826adbe4, type: 3}
+  - {fileID: 7935619086034649081, guid: 34a5e04cbcfb64a8ca2c3e352bf2a7d0, type: 3}
+  - {fileID: 7935619086034649081, guid: 48b2940d5e99a4a1984b84e230030032, type: 3}
 --- !u!198 &8999826492302029286
 ParticleSystem:
   m_ObjectHideFlags: 0
