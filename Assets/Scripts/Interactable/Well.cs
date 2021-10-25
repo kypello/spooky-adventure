@@ -13,7 +13,7 @@ public class Well : Interactable
 
     public override IEnumerator Interact() {
         DisablePlayer();
-        StartCoroutine(playerLook.LookAt(transform.position + Vector3.up * 3f));
+        StartCoroutine(playerLook.LookAt(transform.position + Vector3.up * 2f));
 
         if (inventory.Contains("Coin")) {
             inventory.RemoveItem("Coin");

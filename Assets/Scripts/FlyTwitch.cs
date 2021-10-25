@@ -7,15 +7,17 @@ public class FlyTwitch : MonoBehaviour
     Animation anim;
     float time = 0f;
 
+    public bool flying = false;
+
     void Awake() {
         anim = GetComponent<Animation>();
     }
 
     void Update() {
         time -= Time.deltaTime;
-        if (time <= 0f) {
+        if ((flying && !anim.isPlaying) || time <= 0f) {
             anim.Play();
-            time = Random.Range(2f, 8f);
+            time = Random.Range(1f, 5f);
         }
     }
 }
