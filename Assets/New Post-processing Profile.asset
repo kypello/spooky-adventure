@@ -18,10 +18,10 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 9.14
+    value: 9
   threshold:
     overrideState: 1
-    value: 0.88
+    value: 0.78
   softKnee:
     overrideState: 0
     value: 0.5
@@ -143,6 +143,42 @@ MonoBehaviour:
   - {fileID: -4643547515000895123}
   - {fileID: -4852005048177969975}
   - {fileID: 5349393624310266296}
+  - {fileID: 5771247272416571878}
+  - {fileID: 3518792182842386233}
+--- !u!114 &3518792182842386233
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b77c5407dc277943b591ade9e6b18c5, type: 3}
+  m_Name: LensDistortion
+  m_EditorClassIdentifier: 
+  active: 0
+  enabled:
+    overrideState: 1
+    value: 1
+  intensity:
+    overrideState: 0
+    value: -66.4
+  intensityX:
+    overrideState: 0
+    value: 0
+  intensityY:
+    overrideState: 0
+    value: 0.51
+  centerX:
+    overrideState: 0
+    value: 0
+  centerY:
+    overrideState: 0
+    value: 0
+  scale:
+    overrideState: 0
+    value: 0.97
 --- !u!114 &5349393624310266296
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -171,6 +207,28 @@ MonoBehaviour:
   lumContrib:
     overrideState: 0
     value: 0.8
+--- !u!114 &5771247272416571878
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b94fcd11afffcb142908bfcb1e261fba, type: 3}
+  m_Name: MotionBlur
+  m_EditorClassIdentifier: 
+  active: 0
+  enabled:
+    overrideState: 1
+    value: 1
+  shutterAngle:
+    overrideState: 1
+    value: 230
+  sampleCount:
+    overrideState: 1
+    value: 21
 --- !u!114 &7632784943360080871
 MonoBehaviour:
   m_ObjectHideFlags: 3

@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CollectCandy : MonoBehaviour
 {
     public ParticleSystem candyCollectParticles;
     public int candy = 0;
+    public TMP_Text candyCount;
+    public Animation candyCountAnim;
 
     AudioSource collectSound;
 
@@ -19,7 +22,11 @@ public class CollectCandy : MonoBehaviour
             candyCollectParticles.Play();
             other.gameObject.SetActive(false);
             collectSound.Play();
+            candyCountAnim["CandyCountBounce"].time = 0f;
+            candyCountAnim.Play();
             candy++;
+
+            candyCount.text = "" + candy;
         }
     }
 }
