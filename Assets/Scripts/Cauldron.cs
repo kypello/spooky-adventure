@@ -15,6 +15,8 @@ public class Cauldron : MonoBehaviour
     public ParticleSystem burst;
     public ParticleSystem stars;
 
+    public AudioSource splash;
+
     public Light light;
     public Animation lightAnim;
 
@@ -54,6 +56,7 @@ public class Cauldron : MonoBehaviour
         burst.Play();
         lightAnim.Play();
         stars.Play();
+        splash.Play();
 
         float ripple = 0f;
         while (ripple < 1.5f) {
