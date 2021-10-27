@@ -15,6 +15,16 @@ public class Patroller : Interactable
     protected bool hopping = true;
     bool notMoving = false;
 
+    bool hasAnimation;
+    bool hasParticles;
+    bool hasFootsteps;
+
+    Animation anim;
+    ParticleSystem particles;
+    AudioSource[] footsteps;
+    public float cycleLength;
+    float timer;
+
     Vector3 targetCC;
     float targetCR;
     Vector3 turnCC;
@@ -25,7 +35,42 @@ public class Patroller : Interactable
     Vector3 next;
 
     void Start() {
+        anim = GetComponent<Animation>();
+        hasAnimation = anim != null;
+
+        particles = GetComponent<ParticleSystem>();
+        hasParticles = particles != null;
+
+        footsteps = GetComponents<AudioSource>();
+        hasFootsteps = footsteps.Length > 0;
+
+        timer = 0f;
+        
         StartCoroutine(Patrol());
+    }
+
+    void Update() {
+        if (hopping) {
+            timer -= Time.deltaTime;
+            if (timer <= 0f) {
+                if (hasAnimation) {
+                    anim.Play();
+                }
+                
+                if (hasParticles) {
+                    particles.Play();
+                }
+
+                if (hasFootsteps) {
+                    footsteps[Random.Range(0, footsteps.Length)].Play();
+                }
+
+                timer = cycleLength;
+            }
+        }
+        else {
+            timer = 0f;
+        }
     }
 
     public override IEnumerator Interact() {
