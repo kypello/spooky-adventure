@@ -10,7 +10,7 @@ public class Patroller : Interactable
     float rotateSpeed;
 
     public float defaultSpeed = 1f;
-    public float defaultRotateSpeed = 0.5f * Mathf.PI;
+    public float defaultRotateSpeed = 1;
 
     protected bool hopping = true;
     bool notMoving = false;
@@ -22,6 +22,8 @@ public class Patroller : Interactable
     [System.Serializable]
     public struct PatrolVisuals {
         public bool hasAnim;
+
+        public bool hasParticles;
 
         public Animation anim;
         public ParticleSystem particles;
@@ -61,7 +63,11 @@ public class Patroller : Interactable
         if ((hopping || onAltCycle) && visuals.hasAnim && (!visuals.anim.isPlaying || (onAltCycle && timer <= 0f))) {
 
             visuals.anim.Play();
-            visuals.particles.Play();
+
+            if (hasParticles) {
+                visuals.particles.Play();
+            }
+            
             visuals.footsteps[Random.Range(0, visuals.footsteps.Length)].Play();
 
             if (visuals.hasAltCycle) {
@@ -85,7 +91,7 @@ public class Patroller : Interactable
         notMoving = true;
 
         while (Vector3.Dot(transform.forward, dirToPlayer) < 0.9999f) {
-            transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, dirToPlayer, defaultRotateSpeed * Time.deltaTime, 0f));
+            transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, dirToPlayer, Mathf.PI * Time.deltaTime, 0f));
             yield return null;
         }
 
@@ -96,7 +102,7 @@ public class Patroller : Interactable
         hopping = true;
 
         while (Vector3.Dot(transform.forward, prevDir) < 0.9999f) {
-            transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, prevDir, defaultRotateSpeed * Time.deltaTime, 0f));
+            transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, prevDir, Mathf.PI * Time.deltaTime, 0f));
             yield return null;
         }
 
@@ -141,9 +147,6 @@ public class Patroller : Interactable
 
                 Vector3 dirToTurnCircleCenter = ((dirToPrev + dirToNext) / 2f).normalized;
                 float distanceToTurnCircleCenter = turnCircleRadius / Mathf.Sin(angleToTurnCircleCenter);
-
-                Debug.Log("targetCircleRadius: " + targetCircleRadius);
-                Debug.Log("Current distance: " + Vector3.Distance(transform.position, target));
 
                 targetCC = target;
                 targetCR = targetCircleRadius;
