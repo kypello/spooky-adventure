@@ -54,15 +54,24 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   defaultSpeed: 1
-  anim: {fileID: 0}
+  defaultRotateSpeed: 0.4
+  visuals:
+    hasAnim: 0
+    hasParticles: 0
+    anim: {fileID: 0}
+    particles: {fileID: 0}
+    footsteps: []
+    hasAltCycle: 0
+    altCycleTimeLength: 0
   name: Ghost
   lines:
-  - I used to be a construction worker...
-  - ...but then I had a... workplace accident...
-  - ...and my hard hat didn't even protect me!
-  - But the most tragic thing of all?
-  - I never got to use a deluxe-model high-energy jackhammer...
-  - Sad ghost moment
+  - lines: []
+  - lines: []
+  - lines: []
+  - lines: []
+  - lines: []
+  - lines: []
+  lookOffset: {x: 0, y: 0, z: 0}
 --- !u!136 &3955276023938592857
 CapsuleCollider:
   m_ObjectHideFlags: 0
