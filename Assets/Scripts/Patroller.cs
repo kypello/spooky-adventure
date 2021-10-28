@@ -19,10 +19,20 @@ public class Patroller : Interactable
     bool hasParticles;
     bool hasFootsteps;
 
-    Animation anim;
-    ParticleSystem particles;
-    AudioSource[] footsteps;
-    public float cycleLength;
+    [System.Serializable]
+    public struct PatrolVisuals {
+        public bool hasAnim;
+
+        public Animation anim;
+        public ParticleSystem particles;
+        public AudioSource[] footsteps;
+
+        public bool hasAltCycle;
+        public float altCycleTimeLength;
+    }
+    public PatrolVisuals visuals;
+
+    bool onAltCycle = false;
     float timer;
 
     Vector3 targetCC;
@@ -34,15 +44,9 @@ public class Patroller : Interactable
     Vector3 prev;
     Vector3 next;
 
+
+
     void Start() {
-        anim = GetComponent<Animation>();
-        hasAnimation = anim != null;
-
-        particles = GetComponent<ParticleSystem>();
-        hasParticles = particles != null;
-
-        footsteps = GetComponents<AudioSource>();
-        hasFootsteps = footsteps.Length > 0;
 
         timer = 0f;
         
@@ -50,26 +54,20 @@ public class Patroller : Interactable
     }
 
     void Update() {
-        if (hopping) {
+        if (onAltCycle) {
             timer -= Time.deltaTime;
-            if (timer <= 0f) {
-                if (hasAnimation) {
-                    anim.Play();
-                }
-                
-                if (hasParticles) {
-                    particles.Play();
-                }
-
-                if (hasFootsteps) {
-                    footsteps[Random.Range(0, footsteps.Length)].Play();
-                }
-
-                timer = cycleLength;
-            }
         }
-        else {
-            timer = 0f;
+
+        if ((hopping || onAltCycle) && visuals.hasAnim && (!visuals.anim.isPlaying || (onAltCycle && timer <= 0f))) {
+
+            visuals.anim.Play();
+            visuals.particles.Play();
+            visuals.footsteps[Random.Range(0, visuals.footsteps.Length)].Play();
+
+            if (visuals.hasAltCycle) {
+                onAltCycle = !onAltCycle;
+                timer = visuals.altCycleTimeLength;
+            }
         }
     }
 
