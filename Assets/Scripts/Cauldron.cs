@@ -20,10 +20,14 @@ public class Cauldron : MonoBehaviour
     public Light light;
     public Animation lightAnim;
 
-    public Material potionMat;
+    Material potionMat;
 
     float time = 0f;
     int ingredient = -1;
+
+    void Awake() {
+        potionMat = GetComponent<Renderer>().materials[1];
+    }
 
     void Update() {
         time -= Time.deltaTime;
