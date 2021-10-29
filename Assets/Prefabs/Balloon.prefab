@@ -177,6 +177,19 @@ Transform:
   m_Father: {fileID: 6603933199154412092}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &2401206845791226108
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6951342833940746716}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.17
+  m_Center: {x: 0, y: 0, z: 1.3937539}
 --- !u!111 &7451770072407553724
 Animation:
   m_ObjectHideFlags: 0
@@ -190,9 +203,22 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: 2561a7623b306ff4b833997e8340b402, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &5987681036125428382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6951342833940746716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d7bb2e03bf4034f8413aae39fe1450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDelay: 6
 --- !u!1001 &7834372928965962893
 PrefabInstance:
   m_ObjectHideFlags: 0
