@@ -16,12 +16,7 @@ public class SimplePatroller : Patroller
 
     public LinesArray[] lines;
 
-    public Vector3 lookOffset;
-
     public override IEnumerator StopAndChat() {
-        DisablePlayer();
-        StartCoroutine(playerLook.LookAt(transform.position + lookOffset));
-
         foreach (string line in lines[interactions].lines) {
             yield return textBubble.Display(name, line);
         }
@@ -29,7 +24,5 @@ public class SimplePatroller : Patroller
         if (interactions < lines.Length - 1) {
             interactions++;
         }
-
-        EnablePlayer();
     }
 }

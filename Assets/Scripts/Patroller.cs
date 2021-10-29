@@ -46,7 +46,7 @@ public class Patroller : Interactable
     Vector3 prev;
     Vector3 next;
 
-
+    public Vector3 lookOffset;
 
     void Start() {
 
@@ -81,7 +81,7 @@ public class Patroller : Interactable
         speed = 0f;
         rotateSpeed = 0f;
         DisablePlayer();
-        StartCoroutine(playerLook.LookAt(transform.position + Vector3.up * 2f));
+        StartCoroutine(playerLook.LookAt(transform.position + lookOffset));
 
         Vector3 playerPos = new Vector3(player.transform.position.x, 0, player.transform.position.z);
         Vector3 dirToPlayer = (playerPos - transform.position).normalized;
