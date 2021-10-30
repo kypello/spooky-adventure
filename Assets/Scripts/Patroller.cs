@@ -16,10 +16,6 @@ public class Patroller : Interactable
     protected bool hopping = true;
     bool notMoving = false;
 
-    bool hasAnimation;
-    bool hasParticles;
-    bool hasFootsteps;
-
     public int startNode;
     public bool teleportOnEnd;
 
@@ -68,7 +64,7 @@ public class Patroller : Interactable
 
             visuals.anim.Play();
 
-            if (hasParticles) {
+            if (visuals.hasParticles) {
                 visuals.particles.Play();
             }
             
