@@ -9,6 +9,8 @@ public abstract class Interactable : MonoBehaviour
     public static PlayerLook playerLook;
     public static PlayerInteract playerInteract;
 
+    static Pause pause;
+
     protected static List<string> log = new List<string>();
 
     public void Awake() {
@@ -16,12 +18,17 @@ public abstract class Interactable : MonoBehaviour
         player = FindObjectOfType<Player>();
         playerLook = FindObjectOfType<PlayerLook>();
         playerInteract = FindObjectOfType<PlayerInteract>();
+
+        pause = FindObjectOfType<Pause>();
     }
 
     public void DisablePlayer() {
+        pause.SetPausedState(false);
+
         player.control = false;
         playerLook.control = false;
         playerInteract.control = false;
+
     }
 
     public void EnablePlayer() {

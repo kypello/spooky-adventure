@@ -13,10 +13,17 @@ public class PlayerLook : MonoBehaviour
 
     bool lookingAtPoint = false;
 
+    public Pause pause;
+
     void Update()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-
+        if (pause.paused) {
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        
         if (control) {
             xRotation -= Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
