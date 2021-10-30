@@ -13,17 +13,23 @@ public class FrankensteinTrigger : MonoBehaviour
             StartCoroutine(WaitForGrounded());
         }
         else if (collider.gameObject.tag == "Partygoer") {
-            StartCoroutine(OpenClose());
+            StartCoroutine(OpenClose(collider));
         }
     }
 
-    IEnumerator OpenClose() {
+    IEnumerator OpenClose(Collider collider) {
+        collider.enabled = false;
+
         door.Play("DoorOpen");
         yield return new WaitForSeconds(1.5f);
 
         if (!frankenstein.doorPermanentlyOpen) {
             door.Play("DoorClose");
         }
+
+        yield return new WaitForSeconds(4f);
+
+        collider.enabled = true;
     }
 
     IEnumerator WaitForGrounded() {
