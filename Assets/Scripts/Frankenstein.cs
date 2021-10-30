@@ -14,6 +14,7 @@ public class Frankenstein : Interactable
     public Collider doorTrigger;
 
     public bool doorPermanentlyOpen = false;
+    public AudioSource doorOpen;
 
     public override IEnumerator Interact() {
         DisablePlayer();
@@ -69,10 +70,11 @@ public class Frankenstein : Interactable
     void OpenDoor() {
         doorPermanentlyOpen = true;
         door.Play("DoorOpen");
+        doorOpen.Play();
 
         mansionCollisionDefault.enabled = false;
         mansionCollisionDoorOpen.enabled = true;
-        doorTrigger.enabled = false;
+        //doorTrigger.enabled = false;
 
         StartCoroutine(playerLook.LookAt(door.transform.position + Vector3.up * 2f));
     }

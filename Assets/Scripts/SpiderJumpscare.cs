@@ -12,9 +12,10 @@ public class SpiderJumpscare : MonoBehaviour
 
     public Transform player;
 
+    public AudioSource spiderSound;
+
     void OnTriggerEnter(Collider other) {
-        Animation jumpscare;
-        Animation wiggle;
+        spiderSound.Play();
 
         if (player.transform.forward.x > 0) {
             jumpscareA.Play();
