@@ -122,11 +122,17 @@ public class Patroller : Interactable
     }
 
     IEnumerator Patrol() {
-        patrolPoints = patrol.GetComponentsInChildren<Transform>();
+        patrolPoints = new Transform[patrol.childCount];
+        int i = 0;
+        foreach (Transform child in patrol) {
+            patrolPoints[i] = child;
+            i++;
+        }
+
         speed = defaultSpeed;
         rotateSpeed = defaultRotateSpeed;
 
-        int i = startNode;
+        i = startNode;
         transform.position = patrolPoints[i].position;
 
         i++;

@@ -6,10 +6,11 @@ public class FrankensteinTrigger : MonoBehaviour
 {
     public Frankenstein frankenstein;
     public Animation door;
+    public CharacterController player;
 
     void OnTriggerEnter(Collider collider) {
         if (collider.gameObject.tag == "Player") {
-            StartCoroutine(frankenstein.Interact());
+            StartCoroutine(WaitForGrounded());
         }
         else if (collider.gameObject.tag == "Partygoer") {
             StartCoroutine(OpenClose());
@@ -18,10 +19,17 @@ public class FrankensteinTrigger : MonoBehaviour
 
     IEnumerator OpenClose() {
         door.Play("DoorOpen");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
 
         if (!frankenstein.doorPermanentlyOpen) {
             door.Play("DoorClose");
         }
+    }
+
+    IEnumerator WaitForGrounded() {
+        while (!player.isGrounded) {
+            yield return null;
+        }
+        StartCoroutine(frankenstein.Interact());
     }
 }
