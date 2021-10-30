@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Patroller : Interactable
 {
-    public Transform[] patrolPoints;
+    public Transform patrol;
+    Transform[] patrolPoints;
 
     protected float speed;
     float rotateSpeed;
@@ -18,6 +19,9 @@ public class Patroller : Interactable
     bool hasAnimation;
     bool hasParticles;
     bool hasFootsteps;
+
+    public int startNode;
+    public bool teleportOnEnd;
 
     [System.Serializable]
     public struct PatrolVisuals {
@@ -118,13 +122,29 @@ public class Patroller : Interactable
     }
 
     IEnumerator Patrol() {
+        patrolPoints = patrol.GetComponentsInChildren<Transform>();
         speed = defaultSpeed;
         rotateSpeed = defaultRotateSpeed;
-        transform.position = patrolPoints[patrolPoints.Length - 1].position;
-        transform.rotation = Quaternion.LookRotation(patrolPoints[0].position - transform.position);
+
+        int i = startNode;
+        transform.position = patrolPoints[i].position;
+
+        i++;
+        if (i >= patrolPoints.Length) {
+            i = 0;
+        }
+
+        transform.rotation = Quaternion.LookRotation(patrolPoints[i].position - transform.position);
 
         while (true) {
-            for (int i = 0; i < patrolPoints.Length; i++) {
+            while (i < patrolPoints.Length) {
+                if (i == 0 && teleportOnEnd) {
+                    transform.position = patrolPoints[0].position;
+                    transform.rotation = Quaternion.LookRotation(patrolPoints[1].position - transform.position);
+
+                    i++;
+                    continue;
+                }
                 Vector3 target = patrolPoints[i].position;
 
                 Vector3 nextTarget;
@@ -175,7 +195,10 @@ public class Patroller : Interactable
                 }
                 transform.rotation = Quaternion.LookRotation(dirToNext);
                 //transform.position = target + dirToNext * targetCircleRadius;
+
+                i++;
             }
+            i = 0;
         }
     }
 
