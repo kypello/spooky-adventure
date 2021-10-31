@@ -8,6 +8,8 @@ public class TextBubble : MonoBehaviour
     public GameObject bubble;
     public TMP_Text tmp;
     public TMP_Text tmpName;
+    public AudioSource textSound;
+    public int soundInterval = 4;
 
     public bool typing;
 
@@ -41,6 +43,13 @@ public class TextBubble : MonoBehaviour
             for (int j = lineCount; j < lineCountTotal; j++) {
                 tmp.text += "\n ";
             }
+
+            if (i % soundInterval == 0) {
+                textSound.Stop();
+                textSound.pitch = Random.Range(0.75f, 2.5f);
+                textSound.Play();
+            }
+
             yield return null;
 
             if (Input.GetMouseButtonDown(0)) {

@@ -13,6 +13,8 @@ public class StartDialogue : Interactable
     public GameObject candyCount;
     public GameObject candyIcon;
 
+    public AudioSource mainMusic;
+
     Collider collider;
 
     void Start() {
@@ -33,6 +35,7 @@ public class StartDialogue : Interactable
 
         candyCount.SetActive(true);
         candyIcon.SetActive(true);
+        mainMusic.Play();
 
         holdingInvitation = false;
         while (invitation.isPlaying) {

@@ -14,6 +14,8 @@ public abstract class Button : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public Color highlightColor;
     public Color defaultColor;
 
+    public AudioSource clickSound;
+
     void Awake() {
         text = GetComponent<TMP_Text>();
     }
@@ -23,6 +25,7 @@ public abstract class Button : MonoBehaviour, IPointerEnterHandler, IPointerExit
             text.color = highlightColor;
 
             if (Input.GetMouseButtonDown(0)) {
+                clickSound.Play();
                 Click();
             }
         }

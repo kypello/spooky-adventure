@@ -45,7 +45,7 @@ Shader "Unlit/PartyLight"
 
             fixed4 frag(v2f i) : SV_Target
             {
-                if (fmod(_Time.y * 0.8, 1) < 0.5) {
+                if (fmod(_Time.y, 1.01694915254) < 0.50847457627) {
                     return _ColorA;
                 }
                 return _ColorB;
