@@ -1,0 +1,206 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!111 &2312548145424159738
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3230976047228969956}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: ef78ab60ab8c8064981d7cb757f468fc, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: ef78ab60ab8c8064981d7cb757f468fc, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!114 &2312548145424159736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3230976047228969956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 726e321e1f73166409f956b865a6a0a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Scarecrow
+  lines:
+  - lines:
+    - Hey
+    - I'm just practicing scaring people right now
+    - When a crow eventually comes around, it won't know what hit it!!!
+  lookOffset: {x: 0, y: 3, z: 0}
+--- !u!1 &2312548145950038783
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2312548145950038753}
+  - component: {fileID: 2312548145950038782}
+  m_Layer: 0
+  m_Name: Scarecrow 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2312548145950038753
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2312548145950038783}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 78.42, y: 0, z: -18.63}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2854555610682276190}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2312548145950038782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2312548145950038783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bcbb6dd07e26d74c8adcbbcc38b7e7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpscareSound: {fileID: 0}
+  player: {fileID: 0}
+  range: 16
+  anim: {fileID: 2312548145424159738}
+--- !u!1001 &9017097454748185935
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2312548145950038753}
+    m_Modifications:
+    - target: {fileID: 795517216, guid: 1e3d84b8ef53377458ac5c5cf2fddbba, type: 3}
+      propertyPath: hat
+      value: 
+      objectReference: {fileID: 5038555413783821609}
+    - target: {fileID: 795517216, guid: 1e3d84b8ef53377458ac5c5cf2fddbba, type: 3}
+      propertyPath: key
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 795517216, guid: 1e3d84b8ef53377458ac5c5cf2fddbba, type: 3}
+      propertyPath: coins
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 795517216, guid: 1e3d84b8ef53377458ac5c5cf2fddbba, type: 3}
+      propertyPath: crowA
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 795517216, guid: 1e3d84b8ef53377458ac5c5cf2fddbba, type: 3}
+      propertyPath: crowB
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 795517216, guid: 1e3d84b8ef53377458ac5c5cf2fddbba, type: 3}
+      propertyPath: crowKeyProp
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 795517216, guid: 1e3d84b8ef53377458ac5c5cf2fddbba, type: 3}
+      propertyPath: crowCoinsProp
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3712216808071942876, guid: 1e3d84b8ef53377458ac5c5cf2fddbba, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8333331
+      objectReference: {fileID: 0}
+    - target: {fileID: 3712216808071942876, guid: 1e3d84b8ef53377458ac5c5cf2fddbba, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8333331
+      objectReference: {fileID: 0}
+    - target: {fileID: 3712216808071942876, guid: 1e3d84b8ef53377458ac5c5cf2fddbba, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8333331
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093667780898621542, guid: 1e3d84b8ef53377458ac5c5cf2fddbba, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5905786761454868139, guid: 1e3d84b8ef53377458ac5c5cf2fddbba, type: 3}
+      propertyPath: m_Name
+      value: Scarecrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 6538735625683110929, guid: 1e3d84b8ef53377458ac5c5cf2fddbba, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6538735625683110929, guid: 1e3d84b8ef53377458ac5c5cf2fddbba, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6538735625683110929, guid: 1e3d84b8ef53377458ac5c5cf2fddbba, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6538735625683110929, guid: 1e3d84b8ef53377458ac5c5cf2fddbba, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6538735625683110929, guid: 1e3d84b8ef53377458ac5c5cf2fddbba, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6538735625683110929, guid: 1e3d84b8ef53377458ac5c5cf2fddbba, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6538735625683110929, guid: 1e3d84b8ef53377458ac5c5cf2fddbba, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6538735625683110929, guid: 1e3d84b8ef53377458ac5c5cf2fddbba, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6538735625683110929, guid: 1e3d84b8ef53377458ac5c5cf2fddbba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 4.8725924
+      objectReference: {fileID: 0}
+    - target: {fileID: 6538735625683110929, guid: 1e3d84b8ef53377458ac5c5cf2fddbba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6538735625683110929, guid: 1e3d84b8ef53377458ac5c5cf2fddbba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7336010792292527768, guid: 1e3d84b8ef53377458ac5c5cf2fddbba, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 795517216, guid: 1e3d84b8ef53377458ac5c5cf2fddbba, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 1e3d84b8ef53377458ac5c5cf2fddbba, type: 3}
+--- !u!1 &3230976047228969956 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5905786761454868139, guid: 1e3d84b8ef53377458ac5c5cf2fddbba, type: 3}
+  m_PrefabInstance: {fileID: 9017097454748185935}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2854555610682276190 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6538735625683110929, guid: 1e3d84b8ef53377458ac5c5cf2fddbba, type: 3}
+  m_PrefabInstance: {fileID: 9017097454748185935}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5038555413783821609 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4093667780898621542, guid: 1e3d84b8ef53377458ac5c5cf2fddbba, type: 3}
+  m_PrefabInstance: {fileID: 9017097454748185935}
+  m_PrefabAsset: {fileID: 0}
