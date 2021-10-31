@@ -15,6 +15,8 @@ public class StartDialogue : Interactable
 
     public AudioSource mainMusic;
 
+    public GameObject canvas;
+
     Collider collider;
 
     void Start() {
@@ -36,6 +38,8 @@ public class StartDialogue : Interactable
         candyCount.SetActive(true);
         candyIcon.SetActive(true);
         mainMusic.Play();
+
+        canvas.SetActive(false);
 
         holdingInvitation = false;
         while (invitation.isPlaying) {

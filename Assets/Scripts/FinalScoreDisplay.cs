@@ -11,7 +11,7 @@ public class FinalScoreDisplay : MonoBehaviour
     void Awake() {
         text = GetComponent<TMP_Text>();
         text.text = "Candies Collected: " + CollectCandy.candy + "/300";
-        if (CollectCandy.candy == 300) {
+        if (CollectCandy.candy >= 300) {
             star.SetActive(true);
         }
     }
