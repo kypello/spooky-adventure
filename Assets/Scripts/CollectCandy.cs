@@ -6,7 +6,7 @@ using TMPro;
 public class CollectCandy : MonoBehaviour
 {
     public ParticleSystem candyCollectParticles;
-    public int candy = 0;
+    public static int candy = 0;
     public TMP_Text candyCount;
     public Animation candyCountAnim;
 
@@ -14,6 +14,7 @@ public class CollectCandy : MonoBehaviour
 
     void Awake() {
         collectSound = GetComponent<AudioSource>();
+        candy = 290;
     }
 
     void OnTriggerEnter(Collider other) {
