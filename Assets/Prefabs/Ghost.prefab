@@ -46,15 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a90494e971a325498bdb2b4fbb94c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  patrol: {fileID: 0}
   defaultSpeed: 1
   defaultRotateSpeed: 0.4
+  startNode: 0
+  teleportOnEnd: 0
   visuals:
     hasAnim: 0
     hasParticles: 0
@@ -63,15 +59,9 @@ MonoBehaviour:
     footsteps: []
     hasAltCycle: 0
     altCycleTimeLength: 0
+  lookOffset: {x: 0, y: 2, z: 0}
   name: Ghost
-  lines:
-  - lines: []
-  - lines: []
-  - lines: []
-  - lines: []
-  - lines: []
-  - lines: []
-  lookOffset: {x: 0, y: 0, z: 0}
+  lines: []
 --- !u!136 &3955276023938592857
 CapsuleCollider:
   m_ObjectHideFlags: 0
