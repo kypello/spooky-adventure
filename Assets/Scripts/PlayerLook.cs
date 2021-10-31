@@ -14,10 +14,11 @@ public class PlayerLook : MonoBehaviour
     bool lookingAtPoint = false;
 
     public Pause pause;
+    public PlayButton playButton;
 
     void Update()
     {
-        if (pause.paused) {
+        if (pause.paused || !playButton.playing) {
             Cursor.lockState = CursorLockMode.None;
         }
         else {

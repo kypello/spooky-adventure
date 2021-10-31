@@ -17,10 +17,6 @@ public class Pause : MonoBehaviour
 
     public bool paused;
 
-    void Awake() {
-        SetPausedState(false);
-    }
-
     void Update() {
         if (!paused && player.control && Input.GetKeyDown(KeyCode.P)) {
             SetPausedState(true);
