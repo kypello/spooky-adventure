@@ -9,6 +9,8 @@ public class Crows : MonoBehaviour
     public float flyTime;
     public Transform player;
 
+    AudioSource crowsSound;
+
     public Transform[] crows;
     Animation[] anims;
 
@@ -29,7 +31,7 @@ public class Crows : MonoBehaviour
         public void Set(Transform c) {
             crow = c;
             dir = (new Vector3(Random.Range(-0.5f, 0.5f), 1f, Random.Range(-0.5f, 0.5f))).normalized;
-            speed = Random.Range(2f, 3f);
+            speed = Random.Range(4f, 5f);
             startDelay = Random.Range(0f, 0.4f);
 
         }
@@ -49,12 +51,25 @@ public class Crows : MonoBehaviour
             anims[i] = crows[i].GetComponent<Animation>();
             startPositions[i] = crows[i].transform.position;
         }
+
+        crowsSound = GetComponent<AudioSource>();
     }
 
     void Update() {
         if (!flownAway && Vector3.Distance(transform.position, player.position) <= flyRange) {
             StartCoroutine(FlyAway());
         }
+        else if (flownAway && !flying && Vector3.Distance(transform.position, player.position) > respawnRange) {
+            Reset();
+        }
+    }
+
+    void Reset() {
+        for (int i = 0; i < crowCount; i++) {
+            crows[i].position = startPositions[i];
+            anims[i].Play("CrowDefault");
+        }
+        flownAway = false;
     }
 
     IEnumerator FlyAway() {
@@ -65,7 +80,7 @@ public class Crows : MonoBehaviour
             anim.Play();
         }
 
-        GetComponent<AudioSource>().Play();
+        crowsSound.Play();
 
         FlyingCrowInfo[] flyingInfos = new FlyingCrowInfo[crowCount];
         for (int i = 0; i < crowCount; i++) {
