@@ -26,7 +26,7 @@ public class Cauldron : MonoBehaviour
     int ingredient = -1;
 
     void Awake() {
-        potionMat = GetComponent<Renderer>().materials[1];
+        potionMat = GetComponent<Renderer>().sharedMaterials[1];
     }
 
     void Update() {
