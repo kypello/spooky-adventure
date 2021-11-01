@@ -14,7 +14,7 @@ public class CollectCandy : MonoBehaviour
 
     void Awake() {
         collectSound = GetComponent<AudioSource>();
-        candy = 300;
+        candy = 0;
     }
 
     void OnTriggerEnter(Collider other) {
